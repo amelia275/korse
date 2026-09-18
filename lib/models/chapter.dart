@@ -2,13 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'progress_status.dart';
 import 'material_item.dart';
 
-/// Model satu Bab/Chapter di dalam Course.
-/// Chapter berisi daftar MaterialItem ("Struktur Materi").
 @immutable
 class Chapter {
   final String id;
   final String title;
-  final String levelLabel; // mis. "Tingkat Pemula · Teori & Studi Kasus"
+  final String levelLabel;
   final String description;
   final ProgressStatus status;
   final int completedMaterialCount;

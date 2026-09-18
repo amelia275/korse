@@ -6,7 +6,6 @@ import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 import 'status_indicator.dart';
 
-/// Item card untuk satu Materi di dalam Struktur Materi (Chapter detail).
 class MaterialTile extends StatelessWidget {
   final MaterialItem material;
   final VoidCallback? onTap;
@@ -69,7 +68,6 @@ class MaterialTile extends StatelessWidget {
   }
 }
 
-/// Item card untuk satu Bab/Chapter di dalam Course detail.
 class ChapterTile extends StatelessWidget {
   final Chapter chapter;
   final VoidCallback? onTap;

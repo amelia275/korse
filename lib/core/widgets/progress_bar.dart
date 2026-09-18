@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
-/// Progress bar tipis, statis — persentase dikirim dari luar (hardcoded data),
-/// tidak pernah dihitung/di-animate saat runtime.
 class AppProgressBar extends StatelessWidget {
   final int percent; // 0-100
   final double height;

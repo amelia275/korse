@@ -6,9 +6,7 @@ import '../../data/dummy_data.dart';
 import '../../models/course.dart';
 import 'thread_detail_screen.dart';
 
-/// List Thread — nested screen (tanpa bottom nav), daftar diskusi dalam
-/// satu Course. Diakses dari Forum landing ATAU langsung dari tombol
-/// "Diskusi" di Halaman Course.
+/// List Thread
 class ThreadListScreen extends StatelessWidget {
   final Course course;
 
@@ -28,8 +26,8 @@ class ThreadListScreen extends StatelessWidget {
             Text('${threads.length} diskusi', style: AppTextStyles.bodySecondary),
             const SizedBox(height: 12),
             if (threads.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 40),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40),
                 child: Center(
                   child: Text('Belum ada diskusi di course ini.', style: AppTextStyles.bodySecondary),
                 ),

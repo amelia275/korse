@@ -3,10 +3,6 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../data/dummy_data.dart';
 
-/// Search — screen nested (TIDAK pakai bottom nav), diakses dari search bar
-/// di Home. Sesuai batasan: hanya 1 screen, tidak ada screen kedua untuk
-/// "hasil pencarian" — search field di sini murni visual/statis
-/// (TextField tanpa controller/listener), konsisten dengan StatelessWidget.
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
@@ -34,7 +30,7 @@ class SearchScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: AppColors.blue, width: 1.3),
                       ),
-                      child: const TextField(
+                      child: TextField(
                         // Statis — tidak ada onChanged/controller, murni visual.
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -48,7 +44,7 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const Text('Pencarian Populer', style: AppTextStyles.h3),
+              Text('Pencarian Populer', style: AppTextStyles.h3),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 8,
@@ -68,7 +64,7 @@ class SearchScreen extends StatelessWidget {
                     .toList(),
               ),
               const SizedBox(height: 24),
-              const Text('Riwayat Pencarian', style: AppTextStyles.h3),
+              Text('Riwayat Pencarian', style: AppTextStyles.h3),
               const SizedBox(height: 8),
               ...DummyData.recentSearches.map(
                 (label) => Padding(

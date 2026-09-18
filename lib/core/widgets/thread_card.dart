@@ -3,7 +3,6 @@ import '../../models/thread.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
-/// Avatar bulat berisi inisial nama — dipakai di Thread, Reply, dan Profile.
 class InitialsAvatar extends StatelessWidget {
   final String initials;
   final double size;
@@ -33,7 +32,6 @@ class InitialsAvatar extends StatelessWidget {
   }
 }
 
-/// Card ringkasan satu thread untuk List Thread.
 class ThreadCard extends StatelessWidget {
   final Thread thread;
   final VoidCallback onTap;

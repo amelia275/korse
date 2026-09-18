@@ -7,16 +7,10 @@ import '../models/material_item.dart';
 import '../models/progress_status.dart';
 import '../models/thread.dart';
 
-/// Semua data di file ini HARDCODED — tidak ada fetch, tidak ada state.
-/// Ini yang membuat aplikasi tetap 100% StatelessWidget: setiap kondisi
-/// (locked/in-progress/completed, hasil search, dsb) sudah ditentukan
-/// di sini, bukan dihitung saat runtime.
 class DummyData {
   DummyData._();
 
-  // ---------------------------------------------------------------------
-  // MATERI — isi Detail Materi "Distribusi Normal" (materi contoh utama)
-  // ---------------------------------------------------------------------
+  // MATERI
   static const _distribusiNormalContent = [
     ContentBlock.illustration('Ilustrasi kurva lonceng distribusi normal'),
     ContentBlock.paragraph(
@@ -61,7 +55,7 @@ class DummyData {
         ),
       ],
     ),
-    'distribusi-normal': MaterialItem(
+    'distribusi-normal': const MaterialItem(
       id: 'distribusi-normal',
       title: 'Distribusi Normal',
       readingTime: '5 menit baca',
@@ -82,9 +76,7 @@ class DummyData {
     ),
   };
 
-  // ---------------------------------------------------------------------
-  // CHAPTERS (Bab) — dipakai di dalam Course "Dasar Statistika"
-  // ---------------------------------------------------------------------
+  // CHAPTERS (Bab)
   static final List<Chapter> _statistikaChapters = [
     Chapter(
       id: 'pengenalan-data',
@@ -120,9 +112,7 @@ class DummyData {
     ),
   ];
 
-  // ---------------------------------------------------------------------
   // COURSES
-  // ---------------------------------------------------------------------
   static final List<Course> courses = [
     Course(
       id: 'dasar-statistika',
@@ -177,11 +167,9 @@ class DummyData {
 
   static Course get featuredCourse => courses.first; // "Dasar Statistika"
 
-  // ---------------------------------------------------------------------
   // FORUM / THREADS
-  // ---------------------------------------------------------------------
   static final List<Thread> threads = [
-    Thread(
+    const Thread(
       id: 'thread-1',
       courseId: 'dasar-statistika',
       authorName: 'Rina',
@@ -191,7 +179,7 @@ class DummyData {
       preview: 'Masih bingung di bagian kurva lonceng, ada yang bisa jelasin sederhana?',
       likeCount: 12,
       isSolved: true,
-      replies: const [
+      replies: [
         Reply(
           authorName: 'Dimas',
           authorInitials: 'DP',
@@ -210,7 +198,7 @@ class DummyData {
         ),
       ],
     ),
-    Thread(
+    const Thread(
       id: 'thread-2',
       courseId: 'dasar-statistika',
       authorName: 'Dimas',
@@ -219,7 +207,7 @@ class DummyData {
       title: 'Rekomendasi latihan soal tambahan?',
       preview: 'Materi Bab 2 udah selesai, pengen latihan lebih banyak.',
       likeCount: 5,
-      replies: const [
+      replies: [
         Reply(
           authorName: 'Sari',
           authorInitials: 'SA',
@@ -271,17 +259,13 @@ class DummyData {
     ),
   ];
 
-  // ---------------------------------------------------------------------
-  // SEARCH — hasil hardcode untuk 1 skenario contoh
-  // ---------------------------------------------------------------------
+  // SEARCH
   static const List<String> popularSearches = ['Statistika', 'Python', 'Bahasa Inggris'];
   static const List<String> recentSearches = ['Aljabar linear', 'Machine learning'];
 
-  // ---------------------------------------------------------------------
   // PROFILE
-  // ---------------------------------------------------------------------
-  static const String userName = 'Ammsy';
-  static const String userEmail = 'ammsy.learner@email.com';
+  static const String userName = 'Karina';
+  static const String userEmail = 'karina.aespa@email.com';
   static const int coursesCompletedCount = 3;
   static const int materialsLearnedCount = 42;
 }

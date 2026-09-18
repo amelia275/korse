@@ -9,8 +9,6 @@ import '../../models/material_item.dart' as models;
 import '../../models/progress_status.dart';
 import '../material/material_detail_screen.dart';
 
-/// Chapter (Bab) detail — di mockup disebut "Detail Lesson".
-/// Menampilkan info Bab + "Struktur Materi" (daftar MaterialItem).
 class ChapterDetailScreen extends StatelessWidget {
   final Course course;
   final Chapter chapter;
@@ -57,7 +55,7 @@ class ChapterDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
             ],
-            const Text('Struktur Materi', style: AppTextStyles.h2),
+            Text('Struktur Materi', style: AppTextStyles.h2),
             const SizedBox(height: 12),
             ...chapter.materials.map(
               (material) => MaterialTile(

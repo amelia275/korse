@@ -6,9 +6,6 @@ void main() {
   runApp(const KorseApp());
 }
 
-/// Root widget aplikasi Korse.
-/// StatelessWidget murni — tidak ada state management, semua data
-/// ditentukan lewat dummy_data.dart yang di-load ke tiap screen.
 class KorseApp extends StatelessWidget {
   const KorseApp({super.key});
 

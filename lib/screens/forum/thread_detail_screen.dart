@@ -4,9 +4,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/thread_card.dart';
 import '../../models/thread.dart';
 
-/// Detail Thread — nested screen (tanpa bottom nav).
-/// Post utama dipisah dari daftar balasan, dan input balasan di bawah
-/// bersifat statis (dekorasi visual saja, tidak mengirim apa pun).
+/// Detail Thread
 class ThreadDetailScreen extends StatelessWidget {
   final Thread thread;
 
@@ -119,7 +117,7 @@ class ThreadDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // Input balasan — statis, dekorasi saja (sesuai batasan StatelessWidget).
+            // Input balasan
             Container(
               padding: const EdgeInsets.all(12),
               decoration: const BoxDecoration(
@@ -135,7 +133,7 @@ class ThreadDetailScreen extends StatelessWidget {
                         color: AppColors.surfaceMuted,
                         borderRadius: BorderRadius.circular(24),
                       ),
-                      child: const Text('Tulis balasan...', style: AppTextStyles.bodySecondary),
+                      child: Text('Tulis balasan...', style: AppTextStyles.bodySecondary),
                     ),
                   ),
                   const SizedBox(width: 8),

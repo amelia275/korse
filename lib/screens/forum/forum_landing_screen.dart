@@ -9,9 +9,6 @@ import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
 import 'thread_list_screen.dart';
 
-/// Forum landing — top-level screen #2 (punya bottom nav).
-/// Daftar Course, tiap Course menampilkan preview jumlah diskusi aktif.
-/// Forum di-scope per Course, bukan forum umum satu lapis.
 class ForumLandingScreen extends StatelessWidget {
   const ForumLandingScreen({super.key});
 
@@ -26,7 +23,7 @@ class ForumLandingScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            const Text(
+            Text(
               'Pilih course untuk lihat diskusinya',
               style: AppTextStyles.bodySecondary,
             ),

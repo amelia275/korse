@@ -8,11 +8,6 @@ import '../../models/chapter.dart';
 import '../../models/course.dart';
 import '../../models/material_item.dart';
 
-/// Detail Materi — di mockup disebut "Lesson Content".
-/// Ini screen inti belajar: progress "X dari Y" + ilustrasi + teks
-/// diselingi callout berwarna + tombol Sebelumnya/Lanjut.
-/// Posisi materi (index, total) dihitung dari data hardcoded chapter.materials,
-/// bukan dari state runtime.
 class MaterialDetailScreen extends StatelessWidget {
   final Course course;
   final Chapter chapter;

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Palet warna resmi Korse.
-/// Semua warna aksen diturunkan dari 4 warna dasar ini — jangan menambah
-/// warna baru di luar palet ini agar semua screen tetap konsisten.
 class AppColors {
   AppColors._();
 

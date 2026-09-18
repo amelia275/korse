@@ -3,9 +3,6 @@ import 'progress_status.dart';
 
 enum CalloutType { definisi, contoh, tips }
 
-/// Satu blok konten di dalam halaman Detail Materi.
-/// Content dipecah jadi blok kecil (paragraf/callout/ilustrasi) supaya
-/// gampang diselingi, bukan satu teks panjang.
 @immutable
 class ContentBlock {
   final ContentBlockType type;
@@ -26,12 +23,11 @@ class ContentBlock {
 
 enum ContentBlockType { paragraph, illustration, callout }
 
-/// Model satu Materi (card di dalam Chapter) + isi Detail Materi-nya.
 @immutable
 class MaterialItem {
   final String id;
   final String title;
-  final String readingTime; // mis. "3 menit baca"
+  final String readingTime;
   final ProgressStatus status;
   final List<ContentBlock> content;
 

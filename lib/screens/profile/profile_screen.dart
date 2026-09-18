@@ -8,8 +8,6 @@ import '../achievement/achievement_screen.dart';
 import '../forum/forum_landing_screen.dart';
 import '../home/home_screen.dart';
 
-/// Profile — top-level screen #4 (punya bottom nav).
-/// Info dasar + statistik ringkas saja, tanpa pengaturan interaktif.
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -24,21 +22,21 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 12),
             const Center(child: InitialsAvatar(initials: 'A', size: 72)),
             const SizedBox(height: 12),
-            const Center(child: Text(DummyData.userName, style: AppTextStyles.h1)),
+            Center(child: Text(DummyData.userName, style: AppTextStyles.h1)),
             const SizedBox(height: 2),
-            const Center(child: Text(DummyData.userEmail, style: AppTextStyles.bodySecondary)),
+            Center(child: Text(DummyData.userEmail, style: AppTextStyles.bodySecondary)),
             const SizedBox(height: 24),
             Row(
               children: [
                 Expanded(
-                  child: _StatCard(
+                  child: const _StatCard(
                     value: '${DummyData.coursesCompletedCount}',
                     label: 'Course selesai',
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: _StatCard(
+                  child: const _StatCard(
                     value: '${DummyData.materialsLearnedCount}',
                     label: 'Materi dipelajari',
                   ),

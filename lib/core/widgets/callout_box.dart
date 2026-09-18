@@ -3,8 +3,6 @@ import '../../models/material_item.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
-/// Kotak callout berwarna untuk Detail Materi.
-/// 3 varian tetap: Definisi (biru navy tint), Contoh (ungu tint), Tips (kuning tint).
 class CalloutBox extends StatelessWidget {
   final CalloutType type;
   final String text;

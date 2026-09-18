@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../../models/progress_status.dart';
 import '../theme/app_colors.dart';
 
-/// Ikon bulat kecil yang menunjukkan status (selesai/sedang berjalan/terkunci).
-/// Dipakai di list Chapter dan list MaterialItem.
 class StatusIndicator extends StatelessWidget {
   final ProgressStatus status;
   final double size;
@@ -43,7 +41,6 @@ class StatusIndicator extends StatelessWidget {
   }
 }
 
-/// Badge teks kecil untuk status ("Selesai", "Sedang Belajar", "Terkunci").
 class StatusBadge extends StatelessWidget {
   final ProgressStatus status;
 

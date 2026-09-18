@@ -53,7 +53,6 @@ class ContinueCourseCard extends StatelessWidget {
   }
 }
 
-/// Card course untuk grid "Semua Course" (lebih kecil, tanpa progress).
 class GridCourseCard extends StatelessWidget {
   final Course course;
   final VoidCallback onTap;

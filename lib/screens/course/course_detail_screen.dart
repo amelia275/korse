@@ -8,8 +8,6 @@ import '../../models/course.dart';
 import '../chapter/chapter_detail_screen.dart';
 import '../forum/thread_list_screen.dart';
 
-/// Halaman Course — nested screen (tanpa bottom nav).
-/// Cover, deskripsi, progress keseluruhan, dan daftar Bab.
 class CourseDetailScreen extends StatelessWidget {
   final Course course;
 
@@ -56,7 +54,7 @@ class CourseDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Progress', style: AppTextStyles.caption),
+                      Text('Progress', style: AppTextStyles.caption),
                       Text(
                         '${course.progressPercent}%',
                         style: AppTextStyles.caption.copyWith(color: AppColors.navy, fontWeight: FontWeight.w700),
@@ -66,7 +64,7 @@ class CourseDetailScreen extends StatelessWidget {
                   const SizedBox(height: 6),
                   AppProgressBar(percent: course.progressPercent),
                   const SizedBox(height: 24),
-                  const Text('Bab', style: AppTextStyles.h2),
+                  Text('Bab', style: AppTextStyles.h2),
                   const SizedBox(height: 12),
                   ...course.chapters.map(
                     (chapter) => ChapterTile(

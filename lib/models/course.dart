@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'chapter.dart';
 
-/// Model data untuk satu Course (mata pelajaran/topik).
-/// Immutable — semua instance dibuat sekali di dummy_data.dart dan
-/// tidak pernah diubah saat runtime (sesuai batasan StatelessWidget).
 @immutable
 class Course {
   final String id;
@@ -13,7 +10,7 @@ class Course {
   final Color tintColor;
   final Color iconColor;
   final String description;
-  final int progressPercent; // 0-100, null-safe lewat default 0
+  final int progressPercent;
   final int activeDiscussionCount;
   final List<Chapter> chapters;
 

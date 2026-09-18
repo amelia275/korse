@@ -11,9 +11,6 @@ import '../forum/forum_landing_screen.dart';
 import '../profile/profile_screen.dart';
 import '../search/search_screen.dart';
 
-/// Home — top-level screen #1 (punya bottom nav).
-/// Isinya daftar Course dikelompokkan berdasarkan status belajar:
-/// "Lanjutkan Belajar" (yang sudah punya progress) dan "Semua Course".
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -31,7 +28,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Selamat pagi,', style: AppTextStyles.bodySecondary),
@@ -62,9 +59,9 @@ class HomeScreen extends StatelessWidget {
                   border: Border.all(color: AppColors.border),
                 ),
                 child: Row(
-                  children: const [
-                    Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
-                    SizedBox(width: 8),
+                  children: [
+                    const Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
+                    const SizedBox(width: 8),
                     Text('Cari course...', style: AppTextStyles.bodySecondary),
                   ],
                 ),
@@ -72,7 +69,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             if (started.isNotEmpty) ...[
-              const Text('Lanjutkan Belajar', style: AppTextStyles.h2),
+              Text('Lanjutkan Belajar', style: AppTextStyles.h2),
               const SizedBox(height: 12),
               SizedBox(
                 height: 150,
@@ -94,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
             ],
-            const Text('Semua Course', style: AppTextStyles.h2),
+            Text('Semua Course', style: AppTextStyles.h2),
             const SizedBox(height: 12),
             GridView.builder(
               shrinkWrap: true,

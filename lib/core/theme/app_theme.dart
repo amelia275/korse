@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   AppTheme._();
@@ -8,21 +9,20 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.background,
-      fontFamily: 'Inter',
+      textTheme: GoogleFonts.plusJakartaSansTextTheme(),
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.blue,
         primary: AppColors.navy,
         secondary: AppColors.blue,
         surface: AppColors.background,
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: AppColors.background,
         surfaceTintColor: AppColors.background,
         elevation: 0,
         centerTitle: false,
         iconTheme: IconThemeData(color: AppColors.textPrimary),
-        titleTextStyle: TextStyle(
-          fontFamily: 'Inter',
+        titleTextStyle: GoogleFonts.plusJakartaSans(
           fontSize: 16,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimary,

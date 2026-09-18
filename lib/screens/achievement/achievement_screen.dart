@@ -9,10 +9,6 @@ import '../forum/forum_landing_screen.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
 
-/// Achievement — top-level screen #3 (punya bottom nav).
-/// Daftar course selesai (dengan sertifikat) dan yang belum selesai
-/// ditampilkan redup sebagai pembanding. Basis: bukan leaderboard sosial,
-/// karena audiens course umum ala Coursera.
 class AchievementScreen extends StatelessWidget {
   const AchievementScreen({super.key});
 
