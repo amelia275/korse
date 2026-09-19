@@ -1,29 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../core/widgets/app_bottom_nav.dart';
-import '../../core/widgets/thread_card.dart';
-import '../../data/dummy_data.dart';
-import '../achievement/achievement_screen.dart';
-import '../forum/forum_landing_screen.dart';
-import '../home/home_screen.dart';
 
-class ProfileEdited extends StatefulWidget {
+
+class ProfileEdited extends StatelessWidget {
 const ProfileEdited({super.key});
 
-@override
-  State<ProfileEdited> createState() => _ProfileEditedState();
-}
-class _ProfileEditedState extends State<ProfileEdited> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   @override
-  void dispose(){
-   _nameController.dispose();
-    _emailController.dispose();
-    _phoneController.dispose();
-  }
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
@@ -40,32 +21,29 @@ class _ProfileEditedState extends State<ProfileEdited> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // 1. Form Input (TextField)
-        TextField(
-          controller: _nameController,
-        decoration: InputDecoration(
+       const TextField(
+          decoration: const InputDecoration(
           labelText: "Nama Lengkap",
           hintText: "Masukkan nama Anda",
-          border: OutlineInputBorder(), // Memberi bingkai pada input
+          border: const OutlineInputBorder(), // Memberi bingkai pada input
         ),
       ),
      const  SizedBox(height: 10),
 
-        TextField(
-        controller: _emailController,
-        decoration: InputDecoration(
+        const TextField(
+        decoration: const InputDecoration(
           labelText: "Email",
           hintText: "Masukkan Email Anda",
-          border: OutlineInputBorder(), // Memberi bingkai pada input
+          border: const OutlineInputBorder(), // Memberi bingkai pada input
         ),
       ),
       const  SizedBox(height: 10),
 
-       TextField(
-        controller: _phoneController,
-        decoration: InputDecoration(
+      const  TextField(
+        decoration: const InputDecoration(
           labelText: "Nomor Hp",
           hintText: "Masukkan Nomor Hp Anda",
-          border: OutlineInputBorder(), // Memberi bingkai pada input
+          border: const OutlineInputBorder(), // Memberi bingkai pada input
         ),
       ),
       const SizedBox(height: 20,),
@@ -79,12 +57,8 @@ class _ProfileEditedState extends State<ProfileEdited> {
               style: TextStyle(color:Colors.white ),
             ),
              onPressed:(){
-             final profileData = {
-      'name': _nameController.text,
-      'email': _emailController.text,
-      'phone': _phoneController.text,
-             };
-             Navigator.pop(context, profileData);
+           
+             Navigator.pop(context);
              }  
         ),
           ],

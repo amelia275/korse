@@ -35,7 +35,7 @@ class SearchScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Cari course...',
-                          prefixIcon: const Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
+                          prefixIcon: Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
                         ),
                         style: AppTextStyles.body,
                       ),

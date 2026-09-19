@@ -9,16 +9,9 @@ import '../forum/forum_landing_screen.dart';
 import '../home/home_screen.dart';
 import 'profile_edited.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-class _ProfileScreenState extends State<ProfileScreen>{
-  String name = 'Karina';
-  String email = 'karina.aespa@gmail.com';
-  String phone = '08*********';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,23 +23,11 @@ class _ProfileScreenState extends State<ProfileScreen>{
         const SizedBox(height: 12),
         Center(
             child: ElevatedButton.icon(
-                onPressed: () async{
-                  final labelText = await Navigator.push<Map<String, String>>(
-                    context, 
-                    MaterialPageRoute(builder:
-                     (context)
-                     => const ProfileEdited(),
-                     
-                    ));
-                  if (labelText != null) {
-    setState(() {
-      if (labelText['name']!.isNotEmpty) name = labelText['name']!;
-      if (labelText['email']!.isNotEmpty) email = labelText['email']!;
-      if (labelText['phone']!.isNotEmpty) phone = labelText['phone']!;
-              });
-                  }
-                },
-                icon: const Icon(Icons.edit, size: 25),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                const ProfileEdited()));
+              },
+               icon: const Icon(Icons.edit, size: 25),
                 label: const Text('Edit Profile'),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -70,16 +51,16 @@ class _ProfileScreenState extends State<ProfileScreen>{
             ),
           ],
         ),
-        SizedBox(height: 15),
+       const SizedBox(height: 15),
         Text(
           'USER INFORMATION',
           style: AppTextStyles.h2,
         ),
-         _MenuRow(icon: Icons.person, label: name),
+        const _MenuRow(icon: Icons.person, label: "Karina"),
         const Divider(),
-         _MenuRow(icon: Icons.email, label:email),
+        const _MenuRow(icon: Icons.email, label:"karina.aespa@gmail"),
         const Divider(),
-         _MenuRow(icon: Icons.phone, label:phone),
+        const _MenuRow(icon: Icons.phone, label:"08******"),
         const SizedBox(height: 24),
         Text(
           'SUPPORT & ABOUT',
