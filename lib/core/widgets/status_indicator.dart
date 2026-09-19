@@ -35,7 +35,7 @@ class StatusIndicator extends StatelessWidget {
           width: size,
           height: size,
           decoration: const BoxDecoration(color: AppColors.lockedBg, shape: BoxShape.circle),
-          child: Icon(Icons.lock_rounded, size: 13, color: AppColors.locked),
+          child: const Icon(Icons.lock_rounded, size: 13, color: AppColors.locked),
         );
     }
   }

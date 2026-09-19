@@ -32,10 +32,10 @@ class SearchScreen extends StatelessWidget {
                       ),
                       child: TextField(
                         // Statis — tidak ada onChanged/controller, murni visual.
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Cari course...',
-                          prefixIcon: Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
+                          prefixIcon: const Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
                         ),
                         style: AppTextStyles.body,
                       ),

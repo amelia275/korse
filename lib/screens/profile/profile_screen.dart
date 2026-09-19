@@ -7,49 +7,104 @@ import '../../data/dummy_data.dart';
 import '../achievement/achievement_screen.dart';
 import '../forum/forum_landing_screen.dart';
 import '../home/home_screen.dart';
+import 'profile_edited.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+class _ProfileScreenState extends State<ProfileScreen>{
+  String name = 'Karina';
+  String email = 'karina.aespa@gmail.com';
+  String phone = '08*********';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(16),
+          child: ListView(padding: const EdgeInsets.all(20), children: [
+        const SizedBox(height: 12),
+        const Center(child: InitialsAvatar(initials: 'A', size: 72)),
+        const SizedBox(height: 12),
+        Center(
+            child: ElevatedButton.icon(
+                onPressed: () async{
+                  final labelText = await Navigator.push<Map<String, String>>(
+                    context, 
+                    MaterialPageRoute(builder:
+                     (context)
+                     => const ProfileEdited(),
+                     
+                    ));
+                  if (labelText != null) {
+    setState(() {
+      if (labelText['name']!.isNotEmpty) name = labelText['name']!;
+      if (labelText['email']!.isNotEmpty) email = labelText['email']!;
+      if (labelText['phone']!.isNotEmpty) phone = labelText['phone']!;
+              });
+                  }
+                },
+                icon: const Icon(Icons.edit, size: 25),
+                label: const Text('Edit Profile'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white))),
+
+        const SizedBox(height: 24),
+        const Row(
           children: [
-            const SizedBox(height: 12),
-            const Center(child: InitialsAvatar(initials: 'A', size: 72)),
-            const SizedBox(height: 12),
-            Center(child: Text(DummyData.userName, style: AppTextStyles.h1)),
-            const SizedBox(height: 2),
-            Center(child: Text(DummyData.userEmail, style: AppTextStyles.bodySecondary)),
-            const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: const _StatCard(
-                    value: '${DummyData.coursesCompletedCount}',
-                    label: 'Course selesai',
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: const _StatCard(
-                    value: '${DummyData.materialsLearnedCount}',
-                    label: 'Materi dipelajari',
-                  ),
-                ),
-              ],
+            Expanded(
+              child: _StatCard(
+                value: '${DummyData.coursesCompletedCount}',
+                label: 'Course selesai',
+              ),
             ),
-            const SizedBox(height: 24),
-            _MenuRow(icon: Icons.settings_outlined, label: 'Pengaturan'),
-            const Divider(),
-            _MenuRow(icon: Icons.logout_rounded, label: 'Keluar'),
+            SizedBox(width: 12),
+            Expanded(
+              child: _StatCard(
+                value: '${DummyData.materialsLearnedCount}',
+                label: 'Materi dipelajari',
+              ),
+            ),
           ],
         ),
-      ),
+        SizedBox(height: 15),
+        Text(
+          'USER INFORMATION',
+          style: AppTextStyles.h2,
+        ),
+         _MenuRow(icon: Icons.person, label: name),
+        const Divider(),
+         _MenuRow(icon: Icons.email, label:email),
+        const Divider(),
+         _MenuRow(icon: Icons.phone, label:phone),
+        const SizedBox(height: 24),
+        Text(
+          'SUPPORT & ABOUT',
+          style: AppTextStyles.h2,
+        ),
+        const _MenuRow(
+            icon: Icons.notification_important_outlined,
+            label: 'Notifications'),
+        const Divider(),
+        const _MenuRow(
+            icon: Icons.question_mark_outlined, label: 'Help & Support'),
+        const Divider(),
+        const _MenuRow(icon: Icons.policy_sharp, label: 'Term & Policies'),
+        const SizedBox(height: 24),
+        Text(
+          'ACTION',
+          style: AppTextStyles.h2,
+        ),
+        const SizedBox(height: 2),
+        const _MenuRow(icon: Icons.flag_outlined, label: 'Report a problem'),
+        const Divider(),
+        const _MenuRow(icon: Icons.settings_outlined, label: 'Pengaturan'),
+        const Divider(),
+        const _MenuRow(icon: Icons.logout_rounded, label: 'Keluar'),
+      ])),
       bottomNavigationBar: AppBottomNav(
         currentIndex: 3,
         onTap: (i) => _handleNavTap(context, i),
@@ -70,7 +125,8 @@ class ProfileScreen extends StatelessWidget {
       default:
         target = const AchievementScreen();
     }
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => target));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (_) => target));
   }
 }
 
@@ -92,7 +148,8 @@ class _StatCard extends StatelessWidget {
         children: [
           Text(value, style: AppTextStyles.statNumber),
           const SizedBox(height: 4),
-          Text(label, style: AppTextStyles.caption, textAlign: TextAlign.center),
+          Text(label,
+              style: AppTextStyles.caption, textAlign: TextAlign.center),
         ],
       ),
     );

@@ -7,6 +7,7 @@ void main() {
 }
 
 class KorseApp extends StatelessWidget {
+
   const KorseApp({super.key});
 
   @override

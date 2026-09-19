@@ -127,7 +127,7 @@ class DummyData {
       activeDiscussionCount: 24,
       chapters: _statistikaChapters,
     ),
-    Course(
+    const Course(
       id: 'dasar-pemrograman',
       title: 'Dasar Pemrograman',
       category: 'Teknologi',
@@ -137,9 +137,9 @@ class DummyData {
       description: 'Fondasi logika pemrograman dan sintaks dasar untuk pemula.',
       progressPercent: 25,
       activeDiscussionCount: 9,
-      chapters: const [],
+      chapters: [],
     ),
-    Course(
+    const Course(
       id: 'kimia-dasar',
       title: 'Kimia Dasar',
       category: 'Sains',
@@ -149,9 +149,9 @@ class DummyData {
       description: 'Konsep dasar kimia untuk pemula.',
       progressPercent: 0,
       activeDiscussionCount: 3,
-      chapters: const [],
+      chapters: [],
     ),
-    Course(
+    const Course(
       id: 'bahasa-inggris',
       title: 'Bahasa Inggris',
       category: 'Bahasa',
@@ -161,7 +161,7 @@ class DummyData {
       description: 'Kemampuan dasar bahasa Inggris untuk komunikasi sehari-hari.',
       progressPercent: 0,
       activeDiscussionCount: 0,
-      chapters: const [],
+      chapters: [],
     ),
   ];
 

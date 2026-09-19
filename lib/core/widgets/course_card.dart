@@ -34,8 +34,8 @@ class ContinueCourseCard extends StatelessWidget {
                 color: course.tintColor,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(course.icon, color: course.iconColor, size: 26),
               alignment: Alignment.center,
+              child: Icon(course.icon, color: course.iconColor, size: 26),
             ),
             const SizedBox(height: 10),
             Text(
