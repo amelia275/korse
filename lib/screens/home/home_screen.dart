@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
           children: [
-             Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (_) => const ProfileScreen()),
                   ),
-                  child: const CircleAvatar(child: Text("K", style: TextStyle(fontSize: 50),)),
+                  child: const InitialsAvatar(initials: 'K', size: 50),
                 ),
               ],
             ),
