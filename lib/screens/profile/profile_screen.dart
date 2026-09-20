@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
       body: SafeArea(
           child: ListView(padding: const EdgeInsets.all(20), children: [
         const SizedBox(height: 12),
-        const Center(child: InitialsAvatar(initials: 'A', size: 72)),
+        const Center(child: InitialsAvatar(initials: 'K', size: 72)),
         const SizedBox(height: 12),
         Center(
             child: ElevatedButton.icon(
