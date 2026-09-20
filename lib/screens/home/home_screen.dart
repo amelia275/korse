@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
           children: [
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
@@ -53,22 +53,26 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const ProfileScreen()),
-                  ),
-                  child: const InitialsAvatar(initials: 'K', size: 50),
-                ),
-              ],
+            borderRadius: BorderRadius.circular(12),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SearchScreen()),
             ),
-            const SizedBox(height: 16),
-            InkWell(
-              borderRadius: BorderRadius.circular(12),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const SearchScreen()),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: const [
+                  Icon(Icons.search, color: Colors.grey),
+                  SizedBox(width: 8),
+                  Text('Cari course...', style: TextStyle(color: Colors.grey)),
+                ],
               ),
             ),
+          ),
             const SizedBox(height: 24),
             if (started.isNotEmpty) ...[
               SectionHeader(
@@ -128,6 +132,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+          ]
+      ),
       ),
       bottomNavigationBar: AppBottomNav(
         currentIndex: 0,

@@ -9,8 +9,9 @@ import 'progress_bar.dart';
 class ContinueCourseCard extends StatelessWidget {
   final Course course;
   final VoidCallback onTap;
+  
 
-  const ContinueCourseCard({super.key, required this.course, required this.onTap});
+  const ContinueCourseCard({super.key, required this.course, required this.onTap,});
 
   @override
   Widget build(BuildContext context) {
