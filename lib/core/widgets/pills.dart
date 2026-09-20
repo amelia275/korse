@@ -94,36 +94,43 @@ class SectionHeader extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        children: [
-          Flexible(
-            child: Text(
-              title,
-              style: AppTextStyles.h2,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+Widget build(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 12),
+    child: Row(
+      children: [
+        Expanded(
+          child: Row(
+            children: [
+              Flexible(
+                child: Text(
+                  title,
+                  style: AppTextStyles.h2,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              if (leadingBadge != null) ...[
+                const SizedBox(width: 8),
+                leadingBadge!,
+              ],
+            ],
+          ),
+        ),
+        if (trailing.isNotEmpty) ...[
+          const SizedBox(width: 8),
+          Text(
+            trailing,
+            style: AppTextStyles.caption.copyWith(
+              color: trailingIsAction ? AppColors.blue : AppColors.textMuted,
+              fontWeight: trailingIsAction ? FontWeight.w700 : FontWeight.w500,
             ),
           ),
-          if (leadingBadge != null) ...[
-            const SizedBox(width: 8),
-            leadingBadge!,
-          ],
-          const Spacer(),
-          if (trailing.isNotEmpty)
-            Text(
-              trailing,
-              style: AppTextStyles.caption.copyWith(
-                color: trailingIsAction ? AppColors.blue : AppColors.textMuted,
-                fontWeight: trailingIsAction ? FontWeight.w700 : FontWeight.w500,
-              ),
-            ),
         ],
-      ),
-    );
-  }
+      ],
+    ),
+  );
+}
 }
 
 class FilterChipsRow extends StatelessWidget {

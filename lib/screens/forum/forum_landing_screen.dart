@@ -70,6 +70,10 @@ class ForumLandingScreen extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             const SectionHeader(
+              leadingBadge: Icon(
+                Icons.local_fire_department,
+                color: AppColors.navy,
+                ),
               title: 'Diskusi Hangat Hari Ini',
               trailing: 'Lihat Semua',
               trailingIsAction: true,

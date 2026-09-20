@@ -23,7 +23,14 @@ class AppBottomNav extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: AppColors.background,
-        border: Border(top: BorderSide(color: AppColors.border)),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x1A000000),
+            blurRadius: 5,
+            spreadRadius: 2,
+            offset: Offset(0, -2),
+          )
+        ]
       ),
       child: SafeArea(
         top: false,
