@@ -1,71 +1,56 @@
 import 'package:flutter/material.dart';
 import '../../models/progress_status.dart';
 import '../theme/app_colors.dart';
-import '../theme/app_text_styles.dart';
 
-// Kotak ikon status
 class StatusIndicator extends StatelessWidget {
   final ProgressStatus status;
   final double size;
-  final IconData? customIcon;
 
-  const StatusIndicator({
-    super.key,
-    required this.status,
-    this.size = 38,
-    this.customIcon,
-  });
+  const StatusIndicator({super.key, required this.status, this.size = 26});
 
   @override
   Widget build(BuildContext context) {
-    late final Color bg;
-    late final Color fg;
-    late final IconData icon;
-
     switch (status) {
       case ProgressStatus.completed:
-        bg = AppColors.successBg;
-        fg = AppColors.success;
-        icon = Icons.check_circle_rounded;
-        break;
+        return Container(
+          width: size,
+          height: size,
+          decoration: const BoxDecoration(color: AppColors.successBg, shape: BoxShape.circle),
+          child: const Icon(Icons.check_rounded, size: 15, color: AppColors.success),
+        );
       case ProgressStatus.inProgress:
-        bg = AppColors.mint;
-        fg = AppColors.navy;
-        icon = Icons.show_chart_rounded;
-        break;
+        return Container(
+          width: size,
+          height: size,
+          decoration: const BoxDecoration(color: AppColors.mint, shape: BoxShape.circle),
+          alignment: Alignment.center,
+          child: Container(
+            width: size * 0.3,
+            height: size * 0.3,
+            decoration: const BoxDecoration(color: AppColors.blue, shape: BoxShape.circle),
+          ),
+        );
       case ProgressStatus.locked:
-        bg = AppColors.lockedBg;
-        fg = AppColors.locked;
-        icon = Icons.lock_rounded;
-        break;
+        return Container(
+          width: size,
+          height: size,
+          decoration: const BoxDecoration(color: AppColors.lockedBg, shape: BoxShape.circle),
+          child: const Icon(Icons.lock_rounded, size: 13, color: AppColors.locked),
+        );
     }
-
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(size * 0.3),
-      ),
-      alignment: Alignment.center,
-      child: Icon(customIcon ?? icon, size: size * 0.46, color: fg),
-    );
   }
 }
 
 class StatusBadge extends StatelessWidget {
   final ProgressStatus status;
-  final String? overrideLabel;
 
-  const StatusBadge({super.key, required this.status, this.overrideLabel});
+  const StatusBadge({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {
     late final String label;
     late final Color bg;
     late final Color fg;
-    var showDot = false;
-
     switch (status) {
       case ProgressStatus.completed:
         label = 'Selesai';
@@ -75,7 +60,6 @@ class StatusBadge extends StatelessWidget {
       case ProgressStatus.inProgress:
         label = 'Sedang Belajar';
         bg = AppColors.mint;
-        showDot = true;
         fg = AppColors.navy;
         break;
       case ProgressStatus.locked:
@@ -85,25 +69,11 @@ class StatusBadge extends StatelessWidget {
         break;
     }
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-      decoration:
-          BoxDecoration(color: bg, borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (showDot) ...[
-            Container(
-              width: 6,
-              height: 6,
-              decoration: BoxDecoration(color: fg, shape: BoxShape.circle),
-            ),
-            const SizedBox(width: 5),
-          ],
-          Text(
-            overrideLabel ?? label,
-            style: AppTextStyles.badge.copyWith(color: fg),
-          ),
-        ],
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(20)),
+      child: Text(
+        label,
+        style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: fg),
       ),
     );
   }

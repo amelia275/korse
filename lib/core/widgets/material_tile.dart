@@ -4,7 +4,6 @@ import '../../models/material_item.dart';
 import '../../models/progress_status.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
-import 'pills.dart';
 import 'status_indicator.dart';
 
 class MaterialTile extends StatelessWidget {
@@ -18,138 +17,57 @@ class MaterialTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle = material.kindLabel.isEmpty
-        ? material.readingTime
-        : '${material.readingTime} · ${material.kindLabel}';
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-        color: _active ? AppColors.mint.withValues(alpha: 0.35) : AppColors.background,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: _active ? AppColors.mint : AppColors.border,
-        ),
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Aksen kiri untuk materi yang sedang dipelajari.
-            Container(
-              width: 4,
-              decoration: BoxDecoration(
-                color: _active ? AppColors.navy : Colors.transparent,
-                borderRadius: const BorderRadius.horizontal(
-                  left: Radius.circular(14),
-                ),
-              ),
+    return Opacity(
+      opacity: _locked ? 0.55 : 1,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: _locked ? null : onTap,
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: _active ? AppColors.blue : AppColors.border,
+              width: _active ? 1.4 : 1,
             ),
-            Expanded(
-              child: InkWell(
-                borderRadius: BorderRadius.circular(14),
-                onTap: _locked ? null : onTap,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      StatusIndicator(status: material.status),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    material.title,
-                                    style: AppTextStyles.h3.copyWith(
-                                      color: _locked
-                                          ? AppColors.textMuted
-                                          : AppColors.textPrimary,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                const SizedBox(width: 6),
-                                if (material.status ==
-                                    ProgressStatus.completed)
-                                  const Pill.success('Selesai'),
-                                if (_active) const StatusBadge(
-                                  status: ProgressStatus.inProgress,
-                                ),
-                                if (_locked && material.extraBadge.isNotEmpty)
-                                  Pill.locked(material.extraBadge),
-                              ],
-                            ),
-                            if (subtitle.isNotEmpty) ...[
-                              const SizedBox(height: 3),
-                              Text(
-                                subtitle,
-                                style: AppTextStyles.caption,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ],
-                        ),
+          ),
+          child: Row(
+            children: [
+              StatusIndicator(status: material.status),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      material.title,
+                      style: AppTextStyles.h3.copyWith(
+                        color: _locked ? AppColors.textMuted : AppColors.textPrimary,
                       ),
-                      const SizedBox(width: 8),
-                      if (_active)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 7,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.navy,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Buka',
-                                style: AppTextStyles.badge.copyWith(
-                                  color: AppColors.onPrimary,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              const Icon(
-                                Icons.arrow_forward_rounded,
-                                size: 12,
-                                color: AppColors.onPrimary,
-                              ),
-                            ],
-                          ),
-                        )
-                      else if (_locked)
-                        const Icon(
-                          Icons.lock_rounded,
-                          size: 16,
-                          color: AppColors.locked,
-                        )
-                      else
-                        const Icon(
-                          Icons.chevron_right_rounded,
-                          size: 20,
-                          color: AppColors.textMuted,
-                        ),
+                    ),
+                    if (material.readingTime.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(material.readingTime, style: AppTextStyles.caption),
                     ],
-                  ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              if (_active)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(color: AppColors.navy, borderRadius: BorderRadius.circular(8)),
+                  child: const Text('Buka', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.white)),
+                ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-/// Daftar Bab
 class ChapterTile extends StatelessWidget {
   final Chapter chapter;
   final VoidCallback? onTap;
@@ -161,119 +79,49 @@ class ChapterTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle = _locked
-        ? '${chapter.totalMaterialCount} materi · Terkunci'
-        : _active
-            ? '${chapter.completedMaterialCount} dari '
-                '${chapter.totalMaterialCount} materi selesai'
-            : '${chapter.completedMaterialCount} materi · Selesai';
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-        color: _active ? AppColors.mint.withValues(alpha: 0.35) : AppColors.background,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: _active ? AppColors.mint : AppColors.border),
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              width: 4,
-              decoration: BoxDecoration(
-                color: _active ? AppColors.navy : Colors.transparent,
-                borderRadius: const BorderRadius.horizontal(
-                  left: Radius.circular(14),
-                ),
-              ),
+    return Opacity(
+      opacity: _locked ? 0.55 : 1,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: _locked ? null : onTap,
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: _active ? AppColors.blue : AppColors.border,
+              width: _active ? 1.4 : 1,
             ),
-            Expanded(
-              child: InkWell(
-                borderRadius: BorderRadius.circular(14),
-                onTap: _locked ? null : onTap,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      StatusIndicator(status: chapter.status),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    chapter.title,
-                                    style: AppTextStyles.h3.copyWith(
-                                      color: _locked
-                                          ? AppColors.textMuted
-                                          : AppColors.textPrimary,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                if (_active) ...[
-                                  const SizedBox(width: 6),
-                                  const Pill.mint('Sedang Belajar'),
-                                ],
-                              ],
-                            ),
-                            const SizedBox(height: 3),
-                            Text(subtitle, style: AppTextStyles.caption),
-                          ],
-                        ),
+          ),
+          child: Row(
+            children: [
+              StatusIndicator(status: chapter.status),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      chapter.title,
+                      style: AppTextStyles.h3.copyWith(
+                        color: _locked ? AppColors.textMuted : AppColors.textPrimary,
                       ),
-                      const SizedBox(width: 8),
-                      if (_active)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 7,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.navy,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Buka',
-                                style: AppTextStyles.badge.copyWith(
-                                  color: AppColors.onPrimary,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              const Icon(
-                                Icons.chevron_right_rounded,
-                                size: 13,
-                                color: AppColors.onPrimary,
-                              ),
-                            ],
-                          ),
-                        )
-                      else if (_locked)
-                        const Icon(
-                          Icons.lock_rounded,
-                          size: 16,
-                          color: AppColors.locked,
-                        )
-                      else
-                        const Icon(
-                          Icons.check_circle_outline_rounded,
-                          size: 18,
-                          color: AppColors.success,
-                        ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      _locked
+                          ? '${chapter.totalMaterialCount} materi'
+                          : '${chapter.completedMaterialCount} dari ${chapter.totalMaterialCount} materi selesai',
+                      style: AppTextStyles.caption,
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              if (!_locked) const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
+            ],
+          ),
         ),
       ),
     );

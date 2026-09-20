@@ -22,28 +22,28 @@ const ProfileEdited({super.key});
           children: [
             // 1. Form Input (TextField)
        const TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
           labelText: "Nama Lengkap",
           hintText: "Masukkan nama Anda",
-          border: OutlineInputBorder(), // Memberi bingkai pada input
+          border: const OutlineInputBorder(), // Memberi bingkai pada input
         ),
       ),
      const  SizedBox(height: 10),
 
         const TextField(
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: "Email",
           hintText: "Masukkan Email Anda",
-          border: OutlineInputBorder(), // Memberi bingkai pada input
+          border: const OutlineInputBorder(), // Memberi bingkai pada input
         ),
       ),
       const  SizedBox(height: 10),
 
       const  TextField(
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           labelText: "Nomor Hp",
           hintText: "Masukkan Nomor Hp Anda",
-          border: OutlineInputBorder(), // Memberi bingkai pada input
+          border: const OutlineInputBorder(), // Memberi bingkai pada input
         ),
       ),
       const SizedBox(height: 20,),
