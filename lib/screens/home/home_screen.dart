@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (_) => const ProfileScreen()),
                   ),
-                  child: const InitialsAvatar(initials: 'K', size: 50),
+                  child: const InitialsAvatar(initials: 'A', size: 40),
                 ),
               ],
             ),
