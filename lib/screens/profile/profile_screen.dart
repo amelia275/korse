@@ -13,7 +13,6 @@ import 'profile_edited.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  // Urutan tab: 0 Home, 1 Forum, 2 Achievement, 3 Profile
   void _handleNavTap(BuildContext context, int index) {
     if (index == 3) return;
 
@@ -208,34 +207,15 @@ class ProfileScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // ================= ACCOUNT & PREFERENCES =================
-              const _SectionTitle(title: 'AKUN & PREFERENSI'),
-
-              const SizedBox(height: 10),
-
-              const _MenuCard(
-                icon: Icons.settings_outlined,
-                title: 'Pengaturan',
-                subtitle: 'Kelola preferensi akun',
-              ),
-              const _MenuCard(
-                icon: Icons.workspace_premium_outlined,
-                title: 'Sertifikat Digital',
-                subtitle: 'Lihat sertifikat yang kamu dapatkan',
-              ),
-              const _MenuCard(
-                icon: Icons.help_outline,
-                title: 'Pusat Bantuan',
-                subtitle: 'Butuh bantuan? Cari jawabannya di sini',
-              ),
-
-              const SizedBox(height: 24),
-
               // ================= SUPPORT & ABOUT =================
               const _SectionTitle(title: 'SUPPORT & ABOUT'),
 
               const SizedBox(height: 10),
 
+              const _MenuRow(
+                icon: Icons.settings_outlined,
+                title: 'Settings',
+              ),
               const _MenuRow(
                 icon: Icons.notifications_none,
                 title: 'Notifications',
@@ -322,8 +302,9 @@ class _StatCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: AppColors.surfaceMuted,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -336,19 +317,20 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             value,
-            style: AppTextStyles.h2,
+            style: AppTextStyles.statNumber,
           ),
           const SizedBox(height: 3),
           Text(
             label,
             style: AppTextStyles.bodySecondary.copyWith(
               fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
             ),
           ),
           const SizedBox(height: 3),
           Text(
             note,
-            style: AppTextStyles.bodySecondary,
+            style: AppTextStyles.caption,
           ),
         ],
       ),
@@ -367,10 +349,11 @@ class _StreakCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: AppColors.surfaceMuted,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
       ),
       child: Row(
         children: [
@@ -387,29 +370,27 @@ class _StreakCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 14),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'Learning Streak',
-                  style: AppTextStyles.body.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: AppTextStyles.h3,
                 ),
-                const SizedBox(height: 4),
-                const Text(
+                SizedBox(height: 2),
+                Text(
                   'Keep learning every day!',
                   style: AppTextStyles.bodySecondary,
                 ),
               ],
             ),
           ),
+          const SizedBox(width: 8),
           Text(
             '${DummyData.learningStreak} days',
-            style: AppTextStyles.body.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: AppTextStyles.h3,
           ),
         ],
       ),
@@ -441,7 +422,7 @@ class _SectionTitle extends StatelessWidget {
 }
 
 // ================================================================
-// OLD MENU ROW
+// MENU ROW
 // ================================================================
 
 class _MenuRow extends StatelessWidget {
@@ -480,74 +461,6 @@ class _MenuRow extends StatelessWidget {
               Icons.chevron_right,
               size: 20,
             ),
-        ],
-      ),
-    );
-  }
-}
-
-// ================================================================
-// NEW CARD-STYLE MENU
-// ================================================================
-
-class _MenuCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  const _MenuCard({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 42,
-            height: 42,
-            decoration: BoxDecoration(
-              color: AppColors.navy.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(
-              icon,
-              color: AppColors.navy,
-              size: 21,
-            ),
-          ),
-          const SizedBox(width: 13),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: AppTextStyles.body.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.bodySecondary,
-                ),
-              ],
-            ),
-          ),
-          const Icon(
-            Icons.chevron_right,
-            size: 20,
-          ),
         ],
       ),
     );
