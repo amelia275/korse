@@ -24,7 +24,7 @@ class ForumLandingScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(title: const Text('Forum')),
+      appBar: AppBar(title: const Text('Korse')),
       body: SafeArea(
         top: false,
         child: ListView(

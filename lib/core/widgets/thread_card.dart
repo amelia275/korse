@@ -134,10 +134,11 @@ class ThreadCard extends StatelessWidget {
                   extraCount: 6,
                 )
               else if (thread.footerNote.isNotEmpty)
-                Flexible(
+                Expanded(
                   child: Text(
                     thread.footerNote,
                     style: AppTextStyles.caption,
+                    textAlign: TextAlign.right,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -228,8 +229,9 @@ class HotThreadTile extends StatelessWidget {
               ),
               const Spacer(),
               if (thread.footerNote.isNotEmpty)
-                Flexible(
+                Expanded(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(
