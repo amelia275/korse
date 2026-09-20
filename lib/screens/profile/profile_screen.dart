@@ -52,39 +52,49 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
        const SizedBox(height: 15),
-        Text(
-          'USER INFORMATION',
-          style: AppTextStyles.h2,
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Text(
+                'USER INFORMATION',
+                style: AppTextStyles.h2,
+              ),
+                     const _MenuRow(icon: Icons.person, label: "Karina"),
+              const Divider(),
+              const _MenuRow(icon: Icons.email, label:"karina.aespa@gmail"),
+              const Divider(),
+              const _MenuRow(icon: Icons.phone, label:"08******"),
+              
+              const SizedBox(height: 24),
+              
+                     
+              Text(
+                'SUPPORT & ABOUT',
+                style: AppTextStyles.h2,
+              ),
+              const _MenuRow(
+                  icon: Icons.notification_important_outlined,
+                  label: 'Notifications'),
+              const Divider(),
+              const _MenuRow(
+                  icon: Icons.question_mark_outlined, label: 'Help & Support'),
+              const Divider(),
+              const _MenuRow(icon: Icons.policy_sharp, label: 'Term & Policies'),
+              const SizedBox(height: 24),
+              Text(
+                'ACTION',
+                style: AppTextStyles.h2,
+              ),
+              const SizedBox(height: 2),
+              const _MenuRow(icon: Icons.flag_outlined, label: 'Report a problem'),
+              const Divider(),
+              const _MenuRow(icon: Icons.settings_outlined, label: 'Pengaturan'),
+              const Divider(),
+              const _MenuRow(icon: Icons.logout_rounded, label: 'Keluar'),
+            ],
+          ),
         ),
-        const _MenuRow(icon: Icons.person, label: "Karina"),
-        const Divider(),
-        const _MenuRow(icon: Icons.email, label:"karina.aespa@gmail"),
-        const Divider(),
-        const _MenuRow(icon: Icons.phone, label:"08******"),
-        const SizedBox(height: 24),
-        Text(
-          'SUPPORT & ABOUT',
-          style: AppTextStyles.h2,
-        ),
-        const _MenuRow(
-            icon: Icons.notification_important_outlined,
-            label: 'Notifications'),
-        const Divider(),
-        const _MenuRow(
-            icon: Icons.question_mark_outlined, label: 'Help & Support'),
-        const Divider(),
-        const _MenuRow(icon: Icons.policy_sharp, label: 'Term & Policies'),
-        const SizedBox(height: 24),
-        Text(
-          'ACTION',
-          style: AppTextStyles.h2,
-        ),
-        const SizedBox(height: 2),
-        const _MenuRow(icon: Icons.flag_outlined, label: 'Report a problem'),
-        const Divider(),
-        const _MenuRow(icon: Icons.settings_outlined, label: 'Pengaturan'),
-        const Divider(),
-        const _MenuRow(icon: Icons.logout_rounded, label: 'Keluar'),
       ])),
       bottomNavigationBar: AppBottomNav(
         currentIndex: 3,
