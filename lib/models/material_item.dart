@@ -7,18 +7,22 @@ enum CalloutType { definisi, contoh, tips }
 class ContentBlock {
   final ContentBlockType type;
   final String text;
+  final String assetPath; // dipakai kalau type == illustration
   final CalloutType? calloutType; // dipakai kalau type == callout
 
   const ContentBlock.paragraph(this.text)
       : type = ContentBlockType.paragraph,
+        assetPath = '',
         calloutType = null;
 
-  const ContentBlock.illustration(this.text)
+  /// [text] menjadi caption gambar, mis. "Gambar 2.1: Kurva Lonceng Gauss".
+  const ContentBlock.illustration(this.assetPath, this.text)
       : type = ContentBlockType.illustration,
         calloutType = null;
 
   const ContentBlock.callout(this.calloutType, this.text)
-      : type = ContentBlockType.callout;
+      : type = ContentBlockType.callout,
+        assetPath = '';
 }
 
 enum ContentBlockType { paragraph, illustration, callout }
@@ -27,7 +31,11 @@ enum ContentBlockType { paragraph, illustration, callout }
 class MaterialItem {
   final String id;
   final String title;
-  final String readingTime;
+  final String readingTime; // "3 menit baca"
+  final String kindLabel; // "Konsep Dasar", "Probabilitas Diskrit", "Kuis Formatif"
+  final String extraBadge; // "5 Soal"
+  final String breadcrumbLabel; // "MODUL 2 · STATISTIKA DASAR"
+  final String coreConceptNote; // teks baris "Konsep Dipahami?"
   final ProgressStatus status;
   final List<ContentBlock> content;
 
@@ -36,6 +44,10 @@ class MaterialItem {
     required this.title,
     required this.status,
     this.readingTime = '',
+    this.kindLabel = '',
+    this.extraBadge = '',
+    this.breadcrumbLabel = '',
+    this.coreConceptNote = '',
     this.content = const [],
   });
 }
