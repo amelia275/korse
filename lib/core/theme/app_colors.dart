@@ -41,4 +41,8 @@ class AppColors {
     Color(0xFFDCE6FB), // biru sangat muda
     Color(0xFFE7E9F7), // navy sangat muda
   ];
+
+  static Color? get primary => null;
+
+  static Color? get surface => null;
 }

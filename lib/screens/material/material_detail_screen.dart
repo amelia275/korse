@@ -3,6 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/widgets/app_button.dart';
 import '../../core/widgets/callout_box.dart';
+import '../../core/widgets/pills.dart';
 import '../../core/widgets/progress_bar.dart';
 import '../../models/chapter.dart';
 import '../../models/course.dart';
@@ -36,75 +37,133 @@ class MaterialDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+              padding: const EdgeInsets.fromLTRB(8, 10, 16, 10),
               child: Row(
                 children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back_rounded, color: AppColors.textPrimary),
+                  InkResponse(
+                    onTap: () => Navigator.pop(context),
+                    radius: 22,
+                    child: const SizedBox(
+                      width: 38,
+                      height: 38,
+                      child: Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: AppColors.textPrimary),
+                    ),
                   ),
-                  Expanded(child: AppProgressBar(percent: percent)),
-                  const SizedBox(width: 10),
-                  Text('$currentPos/$total', style: AppTextStyles.caption),
+                  Expanded(child: AppProgressBar(percent: percent, height: 7, color: AppColors.navy)),
+                  const SizedBox(width: 12),
+                  Text(
+                    '$currentPos/$total',
+                    style: AppTextStyles.badge.copyWith(fontSize: 12, color: AppColors.textSecondary),
+                  ),
                 ],
               ),
             ),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                padding: const EdgeInsets.fromLTRB(16, 6, 16, 20),
                 children: [
-                  Text(material.title, style: AppTextStyles.h1),
+                  Row(
+                    children: [
+                      if (material.breadcrumbLabel.isNotEmpty)
+                        Pill(label: material.breadcrumbLabel, bg: AppColors.mint, fg: AppColors.navy),
+                      const SizedBox(width: 8),
+                      if (material.readingTime.isNotEmpty)
+                        Flexible(
+                          child: Text(
+                            '· ${material.readingTime}',
+                            style: AppTextStyles.caption,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Text(material.title, style: AppTextStyles.display),
                   const SizedBox(height: 16),
                   ..._buildContentBlocks(material.content),
                   if (material.content.isEmpty)
-                    Text(
-                      'Konten materi ini belum tersedia.',
-                      style: AppTextStyles.bodySecondary,
+                    const Text('Konten materi ini belum tersedia.', style: AppTextStyles.bodySecondary),
+                  if (material.coreConceptNote.isNotEmpty) ...[
+                    const SizedBox(height: 14),
+                    AppCard(
+                      padding: const EdgeInsets.all(12),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 26,
+                            height: 26,
+                            decoration: const BoxDecoration(color: AppColors.successBg, shape: BoxShape.circle),
+                            alignment: Alignment.center,
+                            child: const Icon(Icons.check_rounded, size: 15, color: AppColors.success),
+                          ),
+                          const SizedBox(width: 11),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Konsep Dipahami?', style: AppTextStyles.h3),
+                                const SizedBox(height: 2),
+                                Text(material.coreConceptNote, style: AppTextStyles.caption),
+                              ],
+                            ),
+                          ),
+                          const Pill(label: 'Materi Inti'),
+                        ],
+                      ),
                     ),
+                  ],
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+            Container(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+              decoration: const BoxDecoration(
+                color: AppColors.background,
+                border: Border(top: BorderSide(color: AppColors.border)),
+              ),
               child: Row(
                 children: [
-                  if (hasPrev)
-                    Expanded(
-                      child: SecondaryButton(
-                        label: 'Sebelumnya',
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => MaterialDetailScreen(
-                                course: course,
-                                chapter: chapter,
-                                material: chapter.materials[index - 1],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                  Expanded(
+                    flex: 4,
+                    child: SecondaryButton(
+                      label: 'Sebelumnya',
+                      icon: Icons.chevron_left_rounded,
+                      onPressed: hasPrev
+                          ? () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => MaterialDetailScreen(
+                                    course: course,
+                                    chapter: chapter,
+                                    material: chapter.materials[index - 1],
+                                  ),
+                                ),
+                              )
+                          : null,
                     ),
-                  if (hasPrev && hasNext) const SizedBox(width: 10),
-                  if (hasNext)
-                    Expanded(
-                      child: PrimaryButton(
-                        label: 'Lanjut',
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => MaterialDetailScreen(
-                                course: course,
-                                chapter: chapter,
-                                material: chapter.materials[index + 1],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 6,
+                    child: PrimaryButton(
+                      label: 'Lanjut',
+                      icon: Icons.chevron_right_rounded,
+                      trailingIcon: true,
+                      onPressed: hasNext
+                          ? () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => MaterialDetailScreen(
+                                    course: course,
+                                    chapter: chapter,
+                                    material: chapter.materials[index + 1],
+                                  ),
+                                ),
+                              )
+                          : null,
                     ),
+                  ),
                 ],
               ),
             ),
@@ -119,19 +178,27 @@ class MaterialDetailScreen extends StatelessWidget {
       switch (block.type) {
         case ContentBlockType.illustration:
           return Container(
-            width: double.infinity,
-            height: 110,
-            margin: const EdgeInsets.only(bottom: 12),
+            margin: const EdgeInsets.only(bottom: 16),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: AppColors.mint,
-              borderRadius: BorderRadius.circular(14),
+              color: AppColors.background,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppColors.border),
             ),
-            alignment: Alignment.center,
-            child: const Icon(Icons.insights_rounded, size: 40, color: AppColors.navy),
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(11),
+                  child: Image.asset(block.assetPath, width: double.infinity, fit: BoxFit.cover),
+                ),
+                const SizedBox(height: 9),
+                Text(block.text, style: AppTextStyles.caption, textAlign: TextAlign.center),
+              ],
+            ),
           );
         case ContentBlockType.paragraph:
           return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 6),
             child: Text(block.text, style: AppTextStyles.body),
           );
         case ContentBlockType.callout:
