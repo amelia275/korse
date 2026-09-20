@@ -23,16 +23,17 @@ class ProfileScreen extends StatelessWidget {
         const SizedBox(height: 12),
         Center(
             child: ElevatedButton.icon(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                const ProfileEdited()));
-              },
-               icon: const Icon(Icons.edit, size: 25),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileEdited()));
+                },
+                icon: const Icon(Icons.edit, size: 25),
                 label: const Text('Edit Profile'),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white))),
-
         const SizedBox(height: 24),
         const Row(
           children: [
@@ -51,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ],
         ),
-       const SizedBox(height: 15),
+        const SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -60,15 +61,12 @@ class ProfileScreen extends StatelessWidget {
                 'USER INFORMATION',
                 style: AppTextStyles.h2,
               ),
-                     const _MenuRow(icon: Icons.person, label: "Karina"),
+              const _MenuRow(icon: Icons.person, label: "Karina Aespa"),
               const Divider(),
-              const _MenuRow(icon: Icons.email, label:"karina.aespa@gmail"),
+              const _MenuRow(icon: Icons.email, label: "karina.aespa@gmail"),
               const Divider(),
-              const _MenuRow(icon: Icons.phone, label:"08******"),
-              
+              const _MenuRow(icon: Icons.phone, label: "08******"),
               const SizedBox(height: 24),
-              
-                     
               Text(
                 'SUPPORT & ABOUT',
                 style: AppTextStyles.h2,
@@ -80,16 +78,19 @@ class ProfileScreen extends StatelessWidget {
               const _MenuRow(
                   icon: Icons.question_mark_outlined, label: 'Help & Support'),
               const Divider(),
-              const _MenuRow(icon: Icons.policy_sharp, label: 'Term & Policies'),
+              const _MenuRow(
+                  icon: Icons.policy_sharp, label: 'Term & Policies'),
               const SizedBox(height: 24),
               Text(
                 'ACTION',
                 style: AppTextStyles.h2,
               ),
               const SizedBox(height: 2),
-              const _MenuRow(icon: Icons.flag_outlined, label: 'Report a problem'),
+              const _MenuRow(
+                  icon: Icons.flag_outlined, label: 'Report a problem'),
               const Divider(),
-              const _MenuRow(icon: Icons.settings_outlined, label: 'Pengaturan'),
+              const _MenuRow(
+                  icon: Icons.settings_outlined, label: 'Pengaturan'),
               const Divider(),
               const _MenuRow(icon: Icons.logout_rounded, label: 'Keluar'),
             ],
