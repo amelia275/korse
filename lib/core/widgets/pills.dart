@@ -84,6 +84,7 @@ class SectionHeader extends StatelessWidget {
   final String trailing;
   final Widget? leadingBadge;
   final bool trailingIsAction;
+  final VoidCallback? onTrailingTap;
 
   const SectionHeader({
     super.key,
@@ -91,46 +92,53 @@ class SectionHeader extends StatelessWidget {
     this.trailing = '',
     this.leadingBadge,
     this.trailingIsAction = false,
+    this.onTrailingTap,
   });
 
   @override
-Widget build(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.only(bottom: 12),
-    child: Row(
-      children: [
-        Expanded(
-          child: Row(
-            children: [
-              Flexible(
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      title,
+                      style: AppTextStyles.h2,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  if (leadingBadge != null) ...[
+                    const SizedBox(width: 8),
+                    leadingBadge!,
+                  ],
+                ],
+              ),
+            ),
+            if (trailing.isNotEmpty)
+              GestureDetector(
+                onTap: onTrailingTap,
                 child: Text(
-                  title,
-                  style: AppTextStyles.h2,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  trailing,
+                  style: AppTextStyles.caption.copyWith(
+                    color:
+                        trailingIsAction ? AppColors.blue : AppColors.textMuted,
+                    fontWeight:
+                        trailingIsAction ? FontWeight.w700 : FontWeight.w500,
+                  ),
                 ),
               ),
-              if (leadingBadge != null) ...[
-                const SizedBox(width: 8),
-                leadingBadge!,
-              ],
-            ],
-          ),
+          ],
         ),
-        if (trailing.isNotEmpty) ...[
-          const SizedBox(width: 8),
-          Text(
-            trailing,
-            style: AppTextStyles.caption.copyWith(
-              color: trailingIsAction ? AppColors.blue : AppColors.textMuted,
-              fontWeight: trailingIsAction ? FontWeight.w700 : FontWeight.w500,
-            ),
-          ),
-        ],
-      ],
-    ),
-  );
-}
+      ),
+    );
+  }
 }
 
 class FilterChipsRow extends StatelessWidget {
@@ -206,7 +214,8 @@ class SearchBox extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const Icon(Icons.search_rounded, size: 18, color: AppColors.textMuted),
+            const Icon(Icons.search_rounded,
+                size: 18, color: AppColors.textMuted),
             const SizedBox(width: 10),
             Expanded(child: Text(hint, style: AppTextStyles.bodySecondary)),
             if (trailingIcon != null)
@@ -306,7 +315,8 @@ class AttachmentChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.description_rounded, size: 15, color: AppColors.blue),
+          const Icon(Icons.description_rounded,
+              size: 15, color: AppColors.blue),
           const SizedBox(width: 7),
           Flexible(
             child: Text(

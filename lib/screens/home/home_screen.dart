@@ -7,6 +7,7 @@ import '../../core/widgets/course_card.dart';
 import '../../core/widgets/pills.dart';
 import '../../data/dummy_data.dart';
 import '../achievement/achievement_screen.dart';
+import '../course/all_courses_screen.dart';
 import '../course/course_detail_screen.dart';
 import '../forum/forum_landing_screen.dart';
 import '../profile/profile_screen.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final started = DummyData.courses.where((c) => c.isStarted).toList();
-    final all = DummyData.courses;
+    final popular = DummyData.courses.take(3).toList();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -50,7 +51,9 @@ class HomeScreen extends StatelessWidget {
                 Text(DummyData.userName, style: AppTextStyles.display),
               ],
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 16),
+            const PromoBannerCard(),
+            const SizedBox(height: 16),
             SearchBox(
               hint: 'Cari course...',
               trailingIcon: Icons.tune_rounded,
@@ -90,13 +93,20 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 26),
             ],
-            const SectionHeader(title: 'Semua course'),
-            const FilterChipsRow(labels: DummyData.courseFilters),
+            SectionHeader(
+              title: 'Course Populer',
+              trailing: 'Lihat semua',
+              trailingIsAction: true,
+              onTrailingTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AllCoursesScreen()),
+              ),
+            ),
             const SizedBox(height: 16),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: all.length,
+              itemCount: popular.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 12,
@@ -104,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisExtent: 196,
               ),
               itemBuilder: (context, i) {
-                final course = all[i];
+                final course = popular[i];
                 return GridCourseCard(
                   course: course,
                   onTap: () => Navigator.push(
@@ -142,6 +152,93 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => target),
+    );
+  }
+}
+
+class PromoBannerCard extends StatelessWidget {
+  const PromoBannerCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 12, 16),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [AppColors.navy, AppColors.blue],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Stack(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Diskon 50% Kursus Flutter!',
+                      style: AppTextStyles.h2.copyWith(
+                        color: AppColors.onPrimary,
+                        fontSize: 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Tingkatkan skill-mu dan mulai belajar hari ini.',
+                      style: AppTextStyles.bodySecondary.copyWith(
+                        color: AppColors.onPrimary.withValues(alpha: 0.82),
+                        fontSize: 11.5,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 12),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 7,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.onPrimary,
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: const Text(
+                        'Klaim Sekarang',
+                        style: AppTextStyles.badge,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 68),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: AppColors.onPrimary.withValues(alpha: 0.16),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.local_fire_department_rounded,
+                color: AppColors.onPrimary,
+                size: 30,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
