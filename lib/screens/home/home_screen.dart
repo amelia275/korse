@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (_) => const ProfileScreen()),
               ),
-              child: const AppAvatar(asset: DummyData.avatarUser, size: 34),
+              child: const AppAvatar(asset: DummyData.avatarUser, size: 50),
             ),
           ),
         ],
