@@ -8,6 +8,7 @@ import '../achievement/achievement_screen.dart';
 import '../forum/forum_landing_screen.dart';
 import '../home/home_screen.dart';
 import 'profile_edited.dart';
+import '../../core/widgets/avatar.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -21,9 +22,9 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           children: [
             const SizedBox(height: 12),
-            const Center(child: CircleAvatar(child: Text("K", style:TextStyle(fontSize: 72)))),
+            const Center( child:  AppAvatar(asset: DummyData.avatarUser, size: 72)),
             const SizedBox(height: 12),
-            Center(child: Text(DummyData.userName, style: AppTextStyles.h1)),
+           const Center(child: Text(DummyData.userName, style: AppTextStyles.h1)),
             const SizedBox(height: 24),
              Center(
             child: ElevatedButton.icon(
@@ -38,6 +39,7 @@ class ProfileScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white))),
+                    const SizedBox(height: 20),
             const Row(
               children: [
                 Expanded(
