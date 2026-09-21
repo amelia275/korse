@@ -93,6 +93,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 26),
             ],
+            const ProgressWeeklyCard(),
             SectionHeader(
               title: 'Course Populer',
               trailing: 'Lihat semua',
@@ -239,6 +240,163 @@ class PromoBannerCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ProgressWeeklyCard extends StatelessWidget {
+  const ProgressWeeklyCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.onPrimary,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: AppColors.blue.withValues(alpha: 0.12),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Progress Minggu Ini',
+                style: AppTextStyles.h2.copyWith(fontSize: 17),
+              ),
+              Text(
+                '60%',
+                style: AppTextStyles.h2.copyWith(
+                  color: AppColors.blue,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Text(
+            'Target Belajar',
+            style: AppTextStyles.bodySecondary,
+          ),
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '3 dari 5 hari',
+                style: AppTextStyles.body.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                '60%',
+                style: AppTextStyles.bodySecondary,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: 0.6,
+              minHeight: 8,
+              backgroundColor: AppColors.skyBlue.withValues(alpha: 0.25),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.blue,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: _ProgressItem(
+                  icon: Icons.local_fire_department_rounded,
+                  value: '4 Hari',
+                  label: 'Streak',
+                ),
+              ),
+              Expanded(
+                child: _ProgressItem(
+                  icon: Icons.menu_book_rounded,
+                  value: '3 Modul',
+                  label: 'Selesai',
+                ),
+              ),
+              Expanded(
+                child: _ProgressItem(
+                  icon: Icons.schedule_rounded,
+                  value: '2j 45m',
+                  label: 'Belajar',
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Text(
+            'Tetap konsisten! Tinggal 2 hari lagi untuk mencapai target.',
+            style: AppTextStyles.bodySecondary.copyWith(
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProgressItem extends StatelessWidget {
+  final IconData icon;
+  final String value;
+  final String label;
+
+  const _ProgressItem({
+    required this.icon,
+    required this.value,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 34,
+          height: 34,
+          decoration: BoxDecoration(
+            color: AppColors.mint,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            icon,
+            color: AppColors.navy,
+            size: 18,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              value,
+              style: AppTextStyles.body.copyWith(
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              label,
+              style: AppTextStyles.bodySecondary.copyWith(
+                fontSize: 10,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
